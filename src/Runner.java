@@ -13,7 +13,7 @@ public class Runner {
         ArrayList<String> arrayListCorpus = File.readCorpusFile("cleanCorpus.txt");
         ArrayList<List<String>> arrayList = ArabicTokenizer.tokenAllLines(arrayListCorpus);
         Gram.buildFourGram(arrayList);
-        Gram.printOrderedHashMapToCSV("out.csv");
+        File.printOrderedHashMapToCSV("out.csv");
 
     }
 

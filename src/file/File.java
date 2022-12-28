@@ -2,19 +2,13 @@ package file;
 
 import ngram.Gram;
 import ngram.Model;
-
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class File {
-
-
 
     public static ArrayList<String> readCorpusFile(String path){
 
@@ -40,6 +34,30 @@ public class File {
         }
 
         return arrayListCorpus ;
+
+    }
+
+    public static void printOrderedHashMapToCSV(String fileName) {
+
+        List<String> keys = new ArrayList<>(Gram.CORPUS_HASH_MAP.keySet());
+        Collections.sort(keys, Comparator.comparingInt(key -> Gram.CORPUS_HASH_MAP.get(key).getGram()));
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+
+            bw.write("Word,Gram,Count,Probabilities");
+            bw.newLine();
+
+            for (String key : keys) {
+
+                Model model = Gram.CORPUS_HASH_MAP.get(key);
+                bw.write(key + "," + model.getGram() + "," + model.getCount() + "," + model.getProbabilities());
+                bw.newLine();
+
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
 
     }
 

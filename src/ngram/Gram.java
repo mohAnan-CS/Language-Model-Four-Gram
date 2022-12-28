@@ -24,29 +24,6 @@ public class Gram {
 
     }
 
-    public static void printOrderedHashMapToCSV(String fileName) {
-
-        List<String> keys = new ArrayList<>(CORPUS_HASH_MAP.keySet());
-        Collections.sort(keys, (key1, key2) -> CORPUS_HASH_MAP.get(key1).getGram() - CORPUS_HASH_MAP.get(key2).getGram());
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-
-            bw.write("Word,Gram,Count,Probabilities");
-            bw.newLine();
-
-            for (String key : keys) {
-
-                Model model = CORPUS_HASH_MAP.get(key);
-                bw.write(key + "," + model.getGram() + "," + model.getCount() + "," + model.getProbabilities());
-                bw.newLine();
-
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
-        }
-    }
-
     public static void makeOneGram(List<String> array){
 
         for (String word : array) {
