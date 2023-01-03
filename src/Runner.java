@@ -2,18 +2,21 @@ import file.File;
 import tokenizer.ArabicTokenizer;
 import ngram.Gram;
 import ngram.Model;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class Runner {
 
     public static void main(String[] args) {
 
-        ArrayList<String> arrayListCorpus = File.readCorpusFile("cleanCorpus.txt");
+        ArrayList<String> arrayListCorpus = File.readCorpusFile("normalize_corpus.csv");
         ArrayList<List<String>> arrayList = ArabicTokenizer.tokenAllLines(arrayListCorpus);
         Gram.buildFourGram(arrayList);
-        File.printOrderedHashMapToCSV("out.csv");
+        File.printOrderedHashMapToCSV("language_model.csv");
 
     }
 

@@ -14,7 +14,6 @@ public class Probabilities {
 
         }else if (model.getGram() == 2){
 
-            System.out.println(model);
             int countTwoWord = model.getCount();
             String[] split = model.getWord().split(" ");
             String firstWord = split[0].trim() ;
@@ -24,7 +23,6 @@ public class Probabilities {
 
         }else if (model.getGram() == 3){
 
-            System.out.println(model);
             int countThreeWord = model.getCount();
             String[] splitThreeGram = model.getWord().split(" ");
             String towWordBefore = splitThreeGram[0].trim() + " " + splitThreeGram[1].trim();
